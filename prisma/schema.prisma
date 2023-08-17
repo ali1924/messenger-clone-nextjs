@@ -1,0 +1,30 @@
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+// user model
+model User {
+    // @ means special decorator
+    id            String    @id @default(auto()) @map("_id") @db.ObjectId
+    name          String?
+    email         String?   @unique
+    emailVerified DateTime?
+    image         String?
+    hashPassword  String?
+    createdAt     DateTime  @default(now())
+    updateAt      DateTime  @updatedAt
+
+    conversationIds String[]       @db.ObjectId
+    conversations   Conversation[] @relation(fields: [conversationIds], references: [id])
+
+    seenMessageIds String[]  @db.ObjectId
+    seenMessages   Message[] @relation("Seen", fields: [seenMessageIds], references: [id])
+
+    accounts Account[]
+    messages Message[]
+}
