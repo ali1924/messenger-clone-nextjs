@@ -1,4 +1,5 @@
 import Image from "next/image";
+import AuthForm from "./components/AuthForm";
 const Home = () => {
   return (
     <div 
@@ -33,7 +34,9 @@ const Home = () => {
           >
             Sign in to your account
         </h2>
-      </div>    
+      </div>   
+       {/*Auth form  */}
+       <AuthForm/>
   </div>
   )
 }
