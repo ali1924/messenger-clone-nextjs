@@ -6,22 +6,20 @@ import {
     SubmitHandler
 } from 'react-hook-form';
 import Input from '@/app/components/inputs/Input';
-type Variant = 'Login' | 'Register';
+import Button from '@/app/components/Button';
+type Variant = 'LOGIN' | 'REGISTER';
 
 const AuthForm = () => {
-    const [variant, setVariant] = useState<Variant>('Login');
+    const [variant, setVariant] = useState<Variant>('LOGIN');
     const [isLoading, setLoading] = useState(false);
 
-    const toggleVariant = useCallback(
-        () => {
-            if (variant === 'Login') {
-                setVariant('Register');
-            } else {
-                setVariant('Login');
-            }
-        },
-        [variant],
-    );
+    const toggleVariant = useCallback(() => {
+        if (variant === 'LOGIN') {
+            setVariant('REGISTER');
+        } else {
+            setVariant('LOGIN');
+        }
+    }, [variant]);
     // react hook form
     const { register,
         handleSubmit,
@@ -36,10 +34,10 @@ const AuthForm = () => {
     })
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setLoading(true);
-        if (variant == 'Register') {
+        if (variant == 'REGISTER') {
             // access register
         }
-        if (variant == 'Login') {
+        if (variant == 'LOGIN') {
             // NextAuth sign In
         }
     }
@@ -50,19 +48,19 @@ const AuthForm = () => {
 
     return (
         <div className="
-        mt-8 
-        sm:mx-auto 
-        sm:w-full 
-        sm:max-w-md
+            mt-8 
+            sm:mx-auto 
+            sm:w-full 
+            sm:max-w-md
         ">
             <div className="
-        bg-white
-          px-4
-          py-8
-          shadow
-          sm:rounded-lg
-          sm:px-10
-        ">
+                bg-white
+                px-4
+                py-8
+                shadow
+                sm:rounded-lg
+                sm:px-10
+            ">
                 <form
                     className="space-y-6"
                     onSubmit={handleSubmit(onSubmit)}
@@ -85,8 +83,26 @@ const AuthForm = () => {
                         id="email"
                         label="Email address"
                         type="email"
-                        
+
                     />
+                    <Input
+                        disabled={isLoading}
+                        register={register}
+                        errors={errors}
+                        required
+                        id="password"
+                        label="Password"
+                        type="password"
+                    />
+                    <div>
+                        <Button
+                            disabled={isLoading}
+                            fullWidth
+                            type="submit"
+                        >
+                          {variant === 'LOGIN' ? 'Sign in' : 'Register'}
+                        </Button>
+                    </div>
                 </form>
             </div>
         </div>

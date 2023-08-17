@@ -35,7 +35,6 @@ const Input: React.FC<InputProps> = ({
                 leading-6
                 text-gray-900
                 "
-
             >
                 {label}
             </label>
