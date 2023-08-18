@@ -16,6 +16,8 @@ npm i @next-auth/prisma-adapter
 npm i bcrypt
 npm i -D @types/bcrypt
 
+***************For login and register**************
+
 ************ app>libs>prismadb.ts
   (a)  1. import prisma client
        2. client create (globally)
@@ -31,6 +33,7 @@ npm i -D @types/bcrypt
       ii.export NextAuth(authOptions)
 
     (C)*****register********app>api>register>route.ts
+    (d)
     
 
 

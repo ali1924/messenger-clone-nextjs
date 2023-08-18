@@ -5,7 +5,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(
     request:Request){
-        // 1. find post data from client
+        try{
+            // 1. find post data from client
         const body=await request.json();
         // 2. extract body data
         const {email,name,password}=body;
@@ -25,4 +26,8 @@ export async function POST(
           });
         //   6. return user
         return NextResponse.json(user);
+      }catch(error:any){
+            console.log(error,"Registration error..");
+            return new Response('Internal Error',{status:500});
+       }
 }
