@@ -22,13 +22,16 @@ npm i -D @types/bcrypt
        3. declare client type (globally)
        4. export
 
-   (b)*********route****** app>api>auth>[...nextAuth]>route.js
+   (b)*********route****** app>api>auth>[...nextAuth]>route.ts
       i. const authOptions
          i.1 adapter
          i.2 provider
             i.2.1 CredentialsProvider
          i.3 debug
-      ii. NextAuth(authOptions)
+      ii.export NextAuth(authOptions)
+
+    (C)*****register********app>api>register>route.ts
+    
 
 
 
