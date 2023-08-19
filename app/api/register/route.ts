@@ -11,7 +11,7 @@ export async function POST(
         // 2. extract body data
         const {email,name,password}=body;
         // 3. if check any body data not found
-        if(!email || !name !password){
+        if(!email || !name || !password){
             return new NextResponse('Missing Info',{status:400});
         }
         // 4. hash password

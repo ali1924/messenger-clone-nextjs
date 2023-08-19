@@ -9,12 +9,15 @@ change tailwind config plugin
 5. model create (in schema.prisma file) 
 6. npx prisma db push
 
+
 ***********(1:18:51)Time**************
 npm i next-auth@latest  
 npm i @prisma/client 
 npm i @next-auth/prisma-adapter 
 npm i bcrypt
 npm i -D @types/bcrypt
+npm i axios
+npm i react-hot-toast
 
 ***************For login and register**************
 
@@ -24,7 +27,7 @@ npm i -D @types/bcrypt
        3. declare client type (globally)
        4. export
 
-   (b)*********route****** app>api>auth>[...nextAuth]>route.ts
+   (b)*********[...nextAuth] route****** app>api>auth>[...nextAuth]>route.ts
       i. const authOptions
          i.1 adapter
          i.2 provider
@@ -32,8 +35,17 @@ npm i -D @types/bcrypt
          i.3 debug
       ii.export NextAuth(authOptions)
 
-    (C)*****register********app>api>register>route.ts
-    (d)
+    (C)*****register route********app>api>register>route.ts
+
+    **********npm i axios
+
+   //  registration and login
+    (d)*********Auth form client*******app>(site)>components>AuthForm.jsx
+       //  1. axios(route,data) 
+       npm i react-hot-toast
+      //  ***********toast context ******>app>context>ToastContext.tsx
+      
+
     
 
 

@@ -1,4 +1,5 @@
 'use client';
+import axios from 'axios';
 import React, { useState, useCallback } from 'react';
 import {
     useForm,
@@ -9,6 +10,10 @@ import { BsGithub, BsGoogle } from 'react-icons/bs';
 import Input from '@/app/components/inputs/Input';
 import Button from '@/app/components/Button';
 import AuthSocialButton from './AuthSocialButton';
+import { error } from 'console';
+import { toast } from 'react-hot-toast/headless';
+import { signIn } from 'next-auth/react';
+import { callbackify } from 'util';
 type Variant = 'LOGIN' | 'REGISTER';
 
 const AuthForm = () => {
@@ -35,12 +40,32 @@ const AuthForm = () => {
         }
     })
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
+        // console.log(data);
         setLoading(true);
         if (variant == 'REGISTER') {
             // access register
+            // 1. set post route using axios data=fieldValues
+            axios.post('/api/register',data)
+            .catch(()=>{
+                toast.error("Something went wrong")
+            })
         }
         if (variant == 'LOGIN') {
             // NextAuth sign In
+            // set signin into next Auth
+            signIn('credentials',{
+                ...data,
+                redirect:false
+            }).then((callback)=>{
+                // console.log(callback)
+                if(callback?.error){
+                    toast.error("Invalid credential")
+                }
+                if(callback?.ok && !callback?.error){
+                    // toast.success("Logged In")
+                    alert("Logged in")
+                }
+            })
         }
     }
     const socialAction = (action: string) => {

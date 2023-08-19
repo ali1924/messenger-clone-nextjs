@@ -1,5 +1,5 @@
 import Image from "next/image";
-import AuthForm from "./Component/AuthForm";
+import AuthForm from "./components/AuthForm";
 const Home = () => {
   return (
     <div 
